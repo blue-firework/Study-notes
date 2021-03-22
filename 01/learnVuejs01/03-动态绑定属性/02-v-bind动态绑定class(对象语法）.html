@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+  
+<div id ="app">
+  <!-- <h2 class="active">{{message}}</h2>
+  <h2 v-bind:class="active">{{message}}</h2> -->
+  <!-- <h2 v-bind:class="{key1: value1, key2: value2}"></h2> -->
+  <h2 class="title" v-bind:class="{active: isActive, line: isLine}">{{message}}</h2>
+  <h2 class="title" v-bind:class="getclasses()">{{message}}</h2>
+  <button v-on:click="btnclick">按钮</button>
+</div>
+  
+<script src="../js/vue.js"></script>
+  
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊，李银河！',
+      isActive: 'true',
+      isLine: 'true'
+    },
+    methods: {
+      btnclick: function () {
+        this.isActive = !this.isActive
+      },
+      getclasses: function () {
+        return {active: this.isActive, line: this.isLine}
+      }
+    }
+  
+  })
+</script>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id ="app">
+  <span v-if="isUser">
+    <label for="username">用户账号</label>
+    <input type="text" id="username" placeholder="用户账号">
+  </span>
+  <!-- vue在做渲染时会尽可能的复用虚拟DOM中的元素。所以上面span标签里input输入的内容做切换时会在下面input里面复用 -->
+  <span v-else>
+    <label for="email">用户邮箱</label>
+    <input type="text" id="email" placeholder="用户邮箱">
+  </span>
+  <button @click="isUser = !isUser">切换类型</button>
+</div>
+  
+<script src="../js/vue.js"></script>
+  
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      isUser: true
+    }
+  
+  })
+</script>
+</body>
+</html>

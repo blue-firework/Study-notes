@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id ="app">
+  <childcpn @increment="changeTotal" 
+            @decrement="changeTotal"></childcpn>
+  <h2>点击次数：{{total}}</h2>
+</div>
+
+<template id="childcpn">
+  <div>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
+  </div>
+</template>
+  
+<script src="../js/vue.js"></script>
+  
+<script>
+  const childcpn = {
+    template: '#childcpn',
+    data() {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      increment() {
+        this.counter++;
+        this.$emit('increment', this.counter)
+      },
+      decrement() {
+        this.counter--;
+        this.$emit('decrement', this.counter)
+      }
+    }
+  }
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      total: 0
+    },
+    methods: {
+      changeTotal(counter) {
+        this.total = counter
+      }
+    },
+    components: {
+      childcpn
+    }
+  })
+</script>
+</body>
+</html>
